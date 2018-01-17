@@ -16,33 +16,41 @@
   <style>
     #visdown-output {max-width: 800px; margin: 0 auto;}
     #visdown-input {display: none;}
-  </style>  
+  </style>
 </head>
 <body>
 
-<div id="visdown-input">  
-  
+<div id="visdown-input">
+
 # Bar Plot
-  
+
 ```vis
-data: 
-  url: data/cars.csv
-mark: point
+width: 600
+height: 500
+data:
+  url: data/notes.csv
+transform:
+- calculate: log(datum.number + 3)
+  as: numberlog
+- calculate: log(datum.money + 1)
+  as: moneylog
+mark: circle
 encoding:
-  x: 
-    field: kmpl
-    type: Q
-  y:   
-    field: price
-    type: Q
+  x:
+   field: year
+   type: nominal
+  y:
+   field: denom
+   type: nominal
   color:
-    field: type
-    type: N
+   field: numberlog
+   type: quantitative
   size:
-    field: bhp
-    type: Q
+   field: moneylog
+
 ```
-    
+
+
 </div>
 <div id="visdown-output"></div>
 <script src="visdown.js"></script>
