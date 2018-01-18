@@ -22,34 +22,87 @@
 
 <div id="visdown-input">
 
-# Astronauts hanging at the space bar 
+# Astronauts hanging at the space bar
 
 ```vis
 width: 600
-height: 500
+height: 400
 data:
   url: data/notes.csv
-transform:
-- calculate: log(datum.number + 3)
-  as: numberlog
-- calculate: log(datum.money + 1)
-  as: moneylog
-mark: circle
-encoding:
-  x:
-   field: year
-   type: nominal
-  y:
-   field: denom
-   type: nominal
-  color:
-   field: numberlog
-   type: quantitative
-  size:
-   field: moneylog
+layer:
+- mark: bar
+  encoding:
+    x:
+     field: year
+     type: N
+    y:
+     field: money
+     type: Q
+     axis:
+      orient: left
+    color:
+     field: denom
+     type: N
+- mark: line
+  encoding:
+    x:
+     field: year
+     type: N
+    y:
+     field: number
+     type: Q
+     axis:
+      grid: false
+      orient: right
+    color:
+      field: denom
+      type: N
+resolve:
+  scale:
+    y: independent
 
 ```
 
+# Second Chart
+
+```vis
+width: 600
+height: 400
+data:
+  url: data/notes.csv
+layer:
+- mark: bar
+  encoding:
+    x:
+     field: year
+     type: N
+    y:
+     field: money
+     type: Q
+     axis:
+      orient: left
+    color:
+     field: denom
+     type: N
+- mark: line
+  encoding:
+    x:
+     field: year
+     type: N
+    y:
+     field: number
+     type: Q
+     axis:
+      grid: false
+      orient: right
+    color:
+      field: denom
+      type: N
+resolve:
+  scale:
+    y: independent
+
+```
 
 </div>
 <div id="visdown-output"></div>
